@@ -50,3 +50,8 @@ pca = PCA(n_components=10)
 principalComponents = pca.fit_transform(data)
 principalDf = pd.DataFrame(data = principalComponents, columns = ['X1','X2','X3','X4','X5','X6','X7','X8','X9','X10'])
 finalDf = pd.concat([principalDf, df[['Class']]], axis = 1)
+
+
+
+# write transformed data
+export_csv = finalDf.to_csv (r'insuranceclaimfraud.csv', index = None, header=True) #Don't forget to add '.csv' at the end of the path
