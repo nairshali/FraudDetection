@@ -25,3 +25,12 @@ df = df.drop(["_c39","fraud_reported","policy_number", "policy_bind_date", "insu
 # factorize the string columns and convert it into integer
 for col in df.columns[df.dtypes == object]:
     df[col] = pd.factorize(df[col])[0]
+
+# percentage of dataddistribution
+print("No Fraud '0': {} % of the dataset".format(round(df['Class'].value_counts(1)[0] * 100,2)))
+print("Fraud '1': {} '% of the dataset \n".format(round(df['Class'].value_counts(1)[1] * 100,2)))
+# plot bar chart
+colors = ["#0101DF", "#DF0101"]
+
+sns.countplot('Class', data=df, palette=colors)
+plt.title('Class Distributions \n (0: No Fraud || 1: Fraud)', fontsize=14)
